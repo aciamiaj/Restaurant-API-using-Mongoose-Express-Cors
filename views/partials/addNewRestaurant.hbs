@@ -1,0 +1,100 @@
+
+<style>
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  input[type="text"], input[type="number"], input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .success {
+    color: green;
+  }
+  
+  .error {
+    color: red;
+  }
+  
+  button[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+</style>
+
+<main>
+  <h1>Add Restaurant</h1>
+  {{#if successMsg}}
+  <p class="success">{{successMsg}}</p>
+  {{/if}}
+  {{#if errorMsg}}
+  <p class="error">{{errorMsg}}</p>
+  {{/if}}
+  <form method="post" action="/api/addNewRestaurant">
+    <table>
+      <tr>
+        <th><label for="restaurant_id">Restaurant ID:</label></th>
+        <td><input type="text" name="restaurant_id" required></td>
+      </tr>
+      <tr>
+        <th><label for="name">Name:</label></th>
+        <td><input type="text" name="name" required></td>
+      </tr>
+      <tr>
+        <th><label for="cuisine">Cuisine:</label></th>
+        <td><input type="text" name="cuisine" required></td>
+      </tr>
+      <tr>
+        <th><label for="borough">Borough:</label></th>
+        <td><input type="text" name="borough" required></td>
+      </tr>
+      <tr>
+        <th><label for="street">Street:</label></th>
+        <td><input type="text" name="street" required></td>
+      </tr>
+      <tr>
+        <th><label for="building">Building:</label></th>
+        <td><input type="text" name="building" required></td>
+      </tr>
+      <tr>
+        <th><label for="zipcode">Zipcode:</label></th>
+        <td><input type="text" name="zipcode" required></td>
+      </tr>
+      <tr>
+        <th><label for="date">Date:</label></th>
+        <td><input type="date" name="date" required></td>
+      </tr>
+      <tr>
+        <th><label for="grade">Grade:</label></th>
+        <td><input type="text" name="grade" required></td>
+      </tr>
+      <tr>
+        <th><label for="score">Score:</label></th>
+        <td><input type="number" name="score" required></td>
+      </tr>
+    </table><br>
+    <button type="submit">Add Restaurant</button>
+  </form>
+</main>

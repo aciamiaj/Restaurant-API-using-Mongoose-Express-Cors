@@ -1,0 +1,97 @@
+<style>
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  input[type="text"], input[type="number"], input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .success {
+    color: green;
+  }
+  
+  .error {
+    color: red;
+  }
+  
+  button[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+</style>
+
+<main>
+  <h1>Update Restaurant</h1>
+  {{#if successMsg}}
+  <p class="success">{{successMsg}}</p>
+  {{/if}}
+  {{#if errorMsg}}
+  <p class="error">{{errorMsg}}</p>
+  {{/if}}
+  {{#each restaurants}}
+  {{#if this.restaurant_id}}
+  <form method="post" action="/api/updateRestaurantById?_method=PUT">
+    <table>
+        <tr>
+             <input type="hidden" name="_method" value="PUT">
+        </tr>
+      <tr>
+        <th><label for="restaurant_id">Restaurant ID:</label></th>
+        <td><input type="text" name="restaurant_id" value="{{this.restaurant_id}}" required></td>
+      </tr>
+      <tr>
+        <th><label for="name">Name:</label></th>
+        <td><input type="text" name="name" value ="{{this.name}}" required></td>
+      </tr>
+      <tr>
+        <th><label for="cuisine">Cuisine:</label></th>
+        <td><input type="text" name="cuisine" value="{{this.cuisine}}" required></td>
+      </tr>
+      <tr>
+        <th><label for="borough">Borough:</label></th>
+        <td><input type="text" name="borough" value="{{this.borough}}" required></td>
+      </tr>
+      <tr>
+        <th><label for="street">Street:</label></th>
+        <td><input type="text" name="street" value="{{this.address.street}}"  required></td>
+      </tr>
+      <tr>
+        <th><label for="building">Building:</label></th>
+        <td><input type="text" name="building" value="{{this.address.building}}"  required></td>
+      </tr>
+      <tr>
+        <th><label for="zipcode">Zipcode:</label></th>
+        <td><input type="text" name="zipcode" value="{{this.address.zipcode}}"  required></td>
+      </tr>
+
+    </table><br>
+     <button type="submit">Update Restaurant</button>
+  </form>
+  {{/if}}
+  {{/each}}
+   
+</main>
+

@@ -1,0 +1,46 @@
+
+
+<style>
+  .search-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
+ 
+  .search-form label {
+    display: block;
+    font-size: 18px;
+    margin-right: 10px;
+  }
+ 
+  .search-form input[type="text"] {
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+ 
+  .search-form input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+ 
+  .search-form input[type="submit"]:hover {
+    background-color: #3e8e41;
+  }
+</style>
+ 
+<div class="search-form">
+<form action="/api/getRestaurantById">
+<label for="restid">Search by Restaurant ID</label>
+<input type="text" name="restid" id="restid">
+<input type="submit" value="Search">
+</form>
+</div>
+

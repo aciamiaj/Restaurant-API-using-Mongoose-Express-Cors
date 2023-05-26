@@ -1,0 +1,98 @@
+<style>
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  input[type="text"], input[type="number"], input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .success {
+    color: green;
+  }
+  
+  .error {
+    color: red;
+  }
+  
+  button[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+</style>
+
+<main>
+  <h1>Are you sure you want to delete?</h1>
+  {{#if successMsg}}
+  <p class="success">{{successMsg}}</p>
+  {{/if}}
+  {{#if errorMsg}}
+  <p class="error">{{errorMsg}}</p>
+  {{/if}}
+  {{#each restaurants}}
+  {{#if this.restaurant_id}}
+  <form method="post" action="/api/deleteRestaurantById?_method=DELETE">
+    <table>
+        <tr>
+             <input type="hidden" name="_method" value="DELETE">
+             <input type="hidden" name="restaurant_id" value={{this.restaurant_id}}>
+        </tr>
+      <tr>
+        <th><label for="restaurant_id">Restaurant ID:</label></th>
+        <td>{{this.restaurant_id}} </td>
+      </tr>
+      <tr>
+        <th><label for="name">Name:</label></th>
+        <td>{{this.name}}</td>
+      </tr>
+      <tr>
+        <th><label for="cuisine">Cuisine:</label></th>
+        <td>{{this.cuisine}}</td>
+      </tr>
+      <tr>
+        <th><label for="borough">Borough:</label></th>
+        <td>{{this.borough}}</td>
+      </tr>
+      <tr>
+        <th><label for="street">Street:</label></th>
+        <td>{{this.address.street}}</td>
+      </tr>
+      <tr>
+        <th><label for="building">Building:</label></th>
+        <td>{{this.address.building}}</td>
+      </tr>
+      <tr>
+        <th><label for="zipcode">Zipcode:</label></th>
+        <td>{{this.address.zipcode}}</td>
+      </tr>
+
+    </table><br>
+     <button type="submit">Delete Restaurant</button>
+  </form>
+  {{/if}}
+  {{/each}}
+   
+</main>
+

@@ -1,0 +1,109 @@
+
+<style>
+      .success {
+    color: green;
+    font-weight: bold;
+   
+  }
+  .search-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
+ 
+  .search-form label {
+    display: block;
+    font-size: 18px;
+    margin-right: 10px;
+  }
+ 
+  .search-form input[type="text"] {
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+ 
+  .search-form input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+ 
+  .search-form input[type="submit"]:hover {
+    background-color: #3e8e41;
+  }
+</style>
+ 
+<div class="search-form">
+<form action="/allrestaurants">
+<label for="restid">Search Borough</label>
+<input type="text" placeholder="Enter borough" name="borough" id="borough">
+<input type="text" placeholder="Page Size" name="pageSize" id="pageSize">
+<input type="submit" value="Search">
+</form>
+</div>
+<div>
+     {{#if successMsg}}
+  <h1 class="success">{{successMsg}}</h1>
+  {{/if}}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Restaurant ID
+            </th>
+            <th>
+                Restaurant
+            </th>
+            <th>
+                Cuisine
+            </th>
+            <th>
+                Borough
+            </th>
+            <th>
+                Street
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+{{#each restaurants}}
+<tr>
+    <td>{{this.restaurant_id}}</td>
+    <td>{{this.name}}</td>
+    <td>{{this.cuisine}}</td>
+    <td>{{this.borough}}</td>
+    <td>{{this.address.street}}</td>
+    <td> <a class="page-link" href="/api/updateRestaurantById/{{this.restaurant_id}}">Edit</a></td>
+    <td> <a class="page-link" href="/api/deleteRestaurantById/{{this.restaurant_id}}">Delete</a></td>
+</tr>
+
+{{/each}}
+</tbody>
+</table>
+
+<ul class="pagination">
+        {{#if prevPage}}
+        <li class="page-item">
+            <a class="page-link" href="/allrestaurants?page={{prevPage}}">&laquo;</a>
+        </li>
+        {{/if}}
+        {{#each pages}}
+        <li class="page-item{{#if isActive}} active{{/if}}">
+            <a class="page-link" href="/allrestaurants?page={{page}}">{{page}}</a>
+        </li>
+        {{/each}}
+        {{#if nextPage}}
+        <li class="page-item">
+            <a class="page-link" href="/allrestaurants?page={{nextPage}}">&raquo;</a>
+        </li>
+        {{/if}}
+    </ul>
+</div>
